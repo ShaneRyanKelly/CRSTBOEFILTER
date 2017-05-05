@@ -1,0 +1,173 @@
+
+<div *ngIf="!gotResults">
+<div id="selectField" *ngIf="zipcodes">
+  <p>Select Zipcodes:</p>
+  <ss-multiselect-dropdown [options]="zipSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="zipModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="cities">
+  <p>Select Cities:</p>
+  <ss-multiselect-dropdown [options]="citySelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="cityModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="states">
+  <p>Select States:</p>
+  <ss-multiselect-dropdown [options]="stateSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="stateModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="affiliations">
+  <p>Select Affiliations:</p>
+  <ss-multiselect-dropdown [options]="affiliationSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="affiliationModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="towns">
+  <p>Select Towns:</p>
+  <ss-multiselect-dropdown [options]="townSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="townModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="wards">
+  <p>Select Wards:</p>
+  <ss-multiselect-dropdown [options]="wardSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="wardModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="districts">
+  <p>Select Districts:</p>
+  <ss-multiselect-dropdown [options]="districtSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="districtModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="congressionalDistricts">
+  <p>Select Congressional Districts:</p>
+  <ss-multiselect-dropdown [options]="congressionalSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="congressionalModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="senatorialDistricts">
+  <p>Select Senatorial Districts:</p>
+  <ss-multiselect-dropdown [options]="senatorialSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="senatorialModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="legislativeDistricts">
+  <p>Select Legislative Districts:</p>
+  <ss-multiselect-dropdown [options]="legislativeSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="legislativeModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="schoolDistricts">
+  <p>Select School Districts:</p>
+  <ss-multiselect-dropdown [options]="schoolSelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="schoolModel">
+  </ss-multiselect-dropdown>
+</div>
+<div id="selectField" *ngIf="voterHistories">
+  <p>Last Voted In: </p>
+  <ss-multiselect-dropdown [options]="historySelect" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="historyModel">
+  </ss-multiselect-dropdown>
+</div>
+<br /><br />
+<div *ngIf="!confirmed">
+  <button type="warn" class="btn btn-success" (click)="confirmSelection()">Confirm Selection</button>
+</div>
+<div *ngIf="confirmed">
+  <button type="submit" class="btn btn-success" (click)="export()">Run Query</button>
+</div>
+  <div *ngIf="selectedZipCodes.length > 0">
+    <p>
+      zipcodes:
+    </p>
+    <div *ngFor="let zipCode of selectedZipCodes">
+      {{ zipCode }}
+    </div>
+  </div>
+  <div *ngIf="selectedCities.length > 0">
+    <p>
+      cities:
+    </p>
+    <div *ngFor="let city of selectedCities">
+      {{ city }}
+    </div>
+  </div>
+  <div *ngIf="selectedStates.length > 0">
+    <p>
+      states:
+    </p>
+    <div *ngFor="let state of selectedStates">
+      {{ state }}
+    </div>
+  </div>
+  <div *ngIf="selectedAffiliations.length > 0">
+    <p>
+      affiliations:
+    </p>
+    <div *ngFor="let affiliation of selectedAffiliations">
+      {{ affiliation }}
+    </div>
+  </div>
+  <div *ngIf="selectedTowns.length > 0">
+    <p>
+      towns:
+    </p>
+    <div *ngFor="let town of selectedTowns">
+      {{ town }}
+    </div>
+  </div>
+  <div *ngIf="selectedWards.length > 0">
+    <p>
+      wards:
+    </p>
+    <div *ngFor="let ward of selectedWards">
+      {{ ward }}
+    </div>
+  </div>
+  <div *ngIf="selectedDistricts.length > 0">
+    <p>
+      Districts:
+    </p>
+    <div *ngFor="let district of selectedDistricts">
+      {{ district }}
+    </div>
+  </div>
+  <div *ngIf="selectedCongressional.length > 0">
+    <p>
+      congressional:
+    </p>
+    <div *ngFor="let congressional of selectedCongressional">
+      {{ congressional }}
+    </div>
+  </div>
+  <div *ngIf="selectedSenatorial.length > 0">
+    <p>
+      senatorial:
+    </p>
+    <div *ngFor="let senatorial of selectedSenatorial">
+      {{ senatorial }}
+    </div>
+  </div>
+  <div *ngIf="selectedLegislative.length > 0">
+    <p>
+      legislative:
+    </p>
+    <div *ngFor="let legislative of selectedLegislative">
+      {{ legislative }}
+    </div>
+  </div>
+  <div *ngIf="selectedSchools.length > 0">
+    <p>
+      schools:
+    </p>
+    <div *ngFor="let school of selectedSchools">
+      {{ school }}
+    </div>
+  </div>
+  <div *ngIf="selectedHistories.length > 0">
+    <p>
+      last voted in:
+    </p>
+    <div *ngFor="let history of selectedHistories">
+      {{ history }}
+    </div>
+  </div>
+</div>
+<div *ngIf="gotResults">
+  <p>
+    Total Records Found: {{ resultCount }}
+    <button type="submit" class="btn btn-success" (click)="downloadCSV()">Download CSV</button>
+    <button type="submit" class="btn btn-warning" (click)="cancel()">Go Back</button>
+  </p>
+</div>

@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "boe_database",
+    "host": "localhost",
+    "dialect": "mysql",
+    "storage": "./db.development.mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "",
+    "database": "boe_database",
+    "host": "localhost",
+    "dialect": "mysql",
+    "storage": ":memory:"
+  },
+  "production": {
+    "username": "root",
+    "password": "",
+    "database": "boe_database",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}

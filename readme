@@ -1,0 +1,152 @@
+===========================================================
+Board of Elections Data Filter
+===========================================================
+
+
+How to Use (development mode):
+
+1. open cmd and navigate to directory
+2. run command `npm install` to install dependencies, 
+   disregard warnings.
+3. `npm run build` leave running in cmd
+4. open a new cmd and enter `npm start`
+5. navigate to http://localhost:3000
+6. Now you can use the application on the local machine
+
+note: deployment to server is a more complicated process 
+and changes will be in the code to change references to 
+localhost used in the development version to the location
+on the server where the application is deployed. Furthermore
+you will need to change database reference wrt database 
+on-site server.
+
+files where server addresses need to be changed:
+
+/app/import/import.service.ts
+/app/county/filter.service.ts
+/app/county/county.service.ts
+/bin/www
+/app.js
+/sqconfig.json 
+
+I am not a network guy so I cannot help you there.
+
+===========================================================
+
+Project Structure:
+===========================================================
+
+/routes/:
+This folder contains all routers for communications between
+the program and the database. county.js contains the functions
+related to the filter.service and county.service. import.js 
+contains the functions used in the import service. These js
+scripts run all queries to the db.
+
+/public/csv:
+this is where your csv gets stored by the importer
+
+/assets/:
+this contains the files for angular front end. The most important
+files here are:
+
+app.module.ts which handles importing components
+and providers, any components or services added to the application
+must be referenced here. 
+
+app.routing.ts contains the routes for the front
+end you can easily any pages added to the application need to 
+be added to the app.routing.ts file. 
+
+/assets/app/:
+this contains the two main folders for the two main components
+of the application:
+
+/assets/app/county:
+
+this folder contains the files relevant to the filter component.
+As the filter is the most full featured component of this application
+it has the most complicated file structure. The component is 
+broken up into four files:
+
+filter.component.css
+containing the css used in the filter component
+
+filter.component.html
+containing the html used in the filter component
+
+filter.component.ts
+containing the functions for data injection into the html file. This
+file is complicated also containing the calls to the service functions
+which communicate with the database. This file also makes use of the
+model files in the 'county' folder. These are field.model.ts and 
+results.model.ts. These are essentially interfaces for creating objects
+used by the filter component. 
+
+filter.service.ts
+This is the most essential file making up the filter component
+it contains the calls to the database which populate the fields
+in the html file and which will ultimately become the output
+when the csv is exported.
+
+/assets/app/import:
+This folder contains the files used in the importer component, it is
+of a far simpler structure than the filter component.
+
+import.component.html
+containing the html used in the import component
+
+import.component.ts
+this contains functions used to inject data into the html file. Also
+this script makes calls to the import service which executes http
+requests to import data from csv to database.
+
+import.service.ts
+this contains the functions which communicate directly with the router
+in order to make queries to the database. 
+===========================================================
+
+Instructions for Data Cleaning:
+===========================================================
+When preparing data from counties please follow the following
+header naming convention in order to ensure proper functioning
+of the program. 
+
+FirstName, MiddleName, LastName, Suffix, StreetNumber,
+HalfCode, StreetName, APT, AddressLine2, AddressLine3, City,
+State, ZipCode, ZipCodePlus4,VoterId, FirstName, MiddleName,
+LastName, Suffix, StreetNumber, HalfCode, StreetName, APT, AddressLine2,
+AddressLine3, City, State, ZipCode, ZipCodePlus4
+
+This is like camelCase except the first letter of name is also 
+capitalized (ie: CamelCase).
+
+Furthermore this program uses the mysql database but really
+implements more of a nosql type logic. All fields except for
+the VoterID (primary key) are imported as text fields. This
+will not present a problem unless you want to implement some
+math on a column, then you will need to parse the returned data
+as a number.
+
+===========================================================
+
+Instructions for use:
+===========================================================
+
+1. click 'import' button
+2. select a cleaned csv file with first line containing 
+   column names.
+3. upload to server
+4. select a county name from dropdown and choose to load data
+   in file to the database
+5. now you can run queries on this database by navigating to
+   the filter tab. 
+6. select a county from the drop down and use the drop downs
+   loaded to select the data you want from the table.
+
+Hope this helps. Remember the header convention! You will
+not need to change anything and can just use the program in 
+dev mode forever so long as you keep to that convention. I 
+know its not best practices but I'm not the best.
+
+

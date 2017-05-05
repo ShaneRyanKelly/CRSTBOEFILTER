@@ -1,0 +1,41 @@
+<div class="modal-body">
+  <div *ngIf="!fileUploaded">
+    <form>
+      <input type="file" name="uploadFile" (change)="fileChange($event)" placeholder="Select File..." accept=".csv" />
+      <button type="submit" class="btn btn-success" (click)="upload()">Upload File</button>
+    </form>
+  </div>
+  <div *ngIf="fileUploaded && !headersSet">
+    <h2 color="green">Upload Successful!</h2>
+    <p>
+      File has been uploaded to server!<br />
+      Show and Confirm Headers to Upload to Database!
+    </p>
+    <button type="submit" class="btn btn-success" (click)="readCSVHeaders()">Show File Headers</button>
+  </div>
+  <div *ngIf="headersSet">
+    <br />
+    <p>Select a County Name: </p>
+    <select [(ngModel)]="selectedCounty" (ngModelChange)="selectCounty($event)">
+      <option *ngFor="let county of counties" [ngValue]="county" >
+        {{ county }} County
+      </option>
+    </select>
+    <br />
+    <br />
+    <select #select multiple>
+      <option *ngFor="let header of headers">
+        {{ header }}
+      </option>
+    </select>
+    <div *ngIf="countySelected">
+      <br />
+      <h2>Selected County: {{ selectedCounty }}</h2>
+      <br />
+      <p>
+        Table Created! Press the button to load data from CSV into Database!
+      </p>
+      <button type="submit" class="btn btn-success" (click)="loadData()">Click Here to Load Data to Table</button>
+    </div>
+  </div>
+</div>

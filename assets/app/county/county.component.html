@@ -1,0 +1,13 @@
+<div *ngIf="countyNames">
+  <h2>Select a County:</h2>
+  <select [(ngModel)]="selectedCounty" (ngModelChange)="selectCounty($event)">
+    <option *ngFor="let countyName of countyNames" [ngValue]="countyName" >
+      {{ countyName.Name }} county
+    </option>
+  </select>
+</div>
+
+<div *ngIf="selectedCounty">
+  <h2>You Have Selected: {{ selectedCounty.Name }} county</h2>
+  <button [routerLink]="['/county', selectedCounty.Name]">Confirm</button>
+</div>
